@@ -1,7 +1,6 @@
 import React from 'react';
 import config from '../config.json';
 import styled from 'styled-components';
-import { CSSReset } from '../src/components/CSSReset';
 import Menu from '../src/components/Menu';
 import { StyledTimeline } from '../src/components/Timeline';
 
@@ -18,7 +17,6 @@ function HomePage() {
 
     return (
         <>
-            <CSSReset/>
             <div style={{
                 display: "flex",
                 flexDirection: "column",
@@ -31,11 +29,13 @@ function HomePage() {
             </div>
         </>
     )
-  }
-  
-  export default HomePage
+}
 
-  const StyledHeader = styled.div`
+export default HomePage
+
+const StyledHeader = styled.div`
+    background-color: ${({ theme }) => theme.backgroundLevel1};
+
     img {
         width: 80px;
         height: 80px;
@@ -48,15 +48,15 @@ function HomePage() {
         padding: 16px 32px;
         gap: 16px;
     }
-  `;
+`;
 
-  const StyledBanner = styled.div`
+const StyledBanner = styled.div`
     background-color: blue;
     background-image: url(${({bg}) => bg});
     height: 230px;
-  `
+`;
 
-  function Header() {
+function Header() {
     return (
         <StyledHeader>
             <StyledBanner bg={config.bg} />
@@ -69,11 +69,11 @@ function HomePage() {
             </section>
         </StyledHeader>
     )
-  }
+}
 
-  function Timeline({searchValue, ...propriedades}) {
-    //console.log("Dentro do componente", propriedades.playlists);
-    const playlistNames = Object.keys(propriedades.playlists);
+function Timeline({searchValue, ...propriedades}) {
+//console.log("Dentro do componente", propriedades.playlists);
+const playlistNames = Object.keys(propriedades.playlists);
 
     return (
         <StyledTimeline>
@@ -104,4 +104,4 @@ function HomePage() {
             })}
         </StyledTimeline>
     )
-  }
+}
